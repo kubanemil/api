@@ -1,7 +1,8 @@
-from models import Card
-import logging
 import json
+import logging
+
 import pytest
+from models import Card
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)

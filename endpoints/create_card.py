@@ -1,8 +1,9 @@
-from models import Card
 import json
-import uuid
 import logging
+import uuid
+
 import pytest
+from models import Card
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)

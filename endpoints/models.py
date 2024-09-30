@@ -1,11 +1,9 @@
-from pynamodb.models import Model
-from pynamodb.attributes import (
-    UnicodeAttribute,
-    NumberAttribute,
-    UTCDateTimeAttribute,
-)
 from datetime import datetime
 from enum import Enum
+
+from pynamodb.attributes import NumberAttribute, UnicodeAttribute, UTCDateTimeAttribute
+from pynamodb.models import Model
+
 
 class Grade(Enum):
     Third = "Third"
@@ -13,9 +11,11 @@ class Grade(Enum):
     First = "First"
     Special = "Special"
 
+
 class Reach(Enum):
     Melee = "Melee"
     Ranged = "Ranged"
+
 
 class User(Model):
     class Meta:
@@ -27,6 +27,7 @@ class User(Model):
     age = NumberAttribute()
     created_at = UTCDateTimeAttribute(default=datetime.now)
     updated_at = UTCDateTimeAttribute(default=datetime.now)
+
 
 class Card(Model):
     class Meta:
@@ -50,7 +51,7 @@ class Card(Model):
         if self.reach not in [e.value for e in Reach]:
             raise ValueError("Invalid reach")
         super(Card, self).save()
-    
+
 
 card = Card(
     id="123",
@@ -60,5 +61,5 @@ card = Card(
     defense=1,
     ability="Test",
     grade=Grade.Third.value,
-    reach=Reach.Melee.value
+    reach=Reach.Melee.value,
 )
