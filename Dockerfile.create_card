@@ -1,0 +1,16 @@
+# Use the official Python image as the base image
+FROM public.ecr.aws/lambda/python:3.12
+
+# Set the working directory in the container
+WORKDIR /var/task
+
+# Copy the requirements file into the container
+COPY requirements.txt .
+COPY endpoints/models.py .
+COPY endpoints/create_card.py .
+
+# Install the Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Set the CMD to your handler
+CMD ["create_card.lambda_handler"]
